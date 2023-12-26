@@ -1,3 +1,3 @@
 # SentimentAnalysis
 <br>
-Initial Repo
+Initial Repository
