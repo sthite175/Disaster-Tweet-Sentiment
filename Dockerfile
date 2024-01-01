@@ -1,18 +1,14 @@
-FROM continuumio/miniconda3:latest
+FROM python:3.10
 
 COPY . /home
 WORKDIR /home
 
-# If you need to upgrade pip, you can uncomment the following line
 RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-# Add channels
-RUN conda config --add channels conda-forge
-RUN conda config --add channels defaults
+# Download all NLTK data
+RUN python -c "import nltk; nltk.download('all')"
 
-RUN conda install --file requirements.txt
+EXPOSE 8888 
 
-EXPOSE 8888
-
-CMD ["python", "app.py"]
-
+CMD  ["python", "app.py"]
